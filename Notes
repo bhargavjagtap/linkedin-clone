@@ -1,2 +1,4 @@
 Shortcut
 FJIP = flex justify-between/justify-around items-center px-5/py-5
+
+hit the url -> generate-secret.vercel.app - to generate a JWT_SECRET
