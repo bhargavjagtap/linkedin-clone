@@ -18,7 +18,7 @@ export default function Home({posts, articles}) {
     <div className="bg-[#F3F2EF] dark:bg-black dark:text-white h-screen overflow-y-scroll md:space-y-6">
       <Head>
         <title>Feed | LinkedIn</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/icons8-linkedin-48.png" />
       </Head>
       <Header/>
       <main className="flex justify-center gap-x-5 px-4 sm:px-12">
@@ -56,9 +56,16 @@ const posts = await db
   .sort({timestamp: -1})
   .toArray();
 
+  const news = await fetch(
+    `https://newsapi.org/v2/top-headlines?country=us&apiKey=${process.env.NEWS_API_KEY}`
+  ).then((res) => res.json());
+  console.log("news==>",news);
+  // console.log("posts==>",posts)
+
   return {
     props: {
       session,
+      articles: news.articles,
       posts:posts.map((post) => (
         {
         _id: post._id.toString(),
